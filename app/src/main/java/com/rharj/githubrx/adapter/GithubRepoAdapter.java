@@ -39,8 +39,8 @@ public class GithubRepoAdapter extends BaseAdapter {
 
     @Override public View getView(int position, View convertView, ViewGroup parent) {
         final View view = (convertView != null ? convertView : createView(parent));
-        final GitHubRepoViewHolder viewHolder = (GitHubRepoViewHolder) view.getTag();
-        viewHolder.setGitHubRepo(getItem(position));
+        final GithubRepoViewHolder viewHolder = (GithubRepoViewHolder) view.getTag();
+        viewHolder.setGithubRepo(getItem(position));
         return view;
     }
 
@@ -56,26 +56,26 @@ public class GithubRepoAdapter extends BaseAdapter {
     private View createView(ViewGroup parent) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         final View view = inflater.inflate(R.layout.item_github_repo, parent, false);
-        final GitHubRepoViewHolder viewHolder = new GitHubRepoViewHolder(view);
+        final GithubRepoViewHolder viewHolder = new GithubRepoViewHolder(view);
         view.setTag(viewHolder);
         return view;
     }
 
-    private static class GitHubRepoViewHolder {
+    private static class GithubRepoViewHolder {
 
         private TextView textRepoName;
         private TextView textRepoDescription;
         private TextView textLanguage;
         private TextView textStars;
 
-        public GitHubRepoViewHolder(View view) {
+        public GithubRepoViewHolder(View view) {
             textRepoName = (TextView) view.findViewById(R.id.text_repo_name);
             textRepoDescription = (TextView) view.findViewById(R.id.text_repo_description);
             textLanguage = (TextView) view.findViewById(R.id.text_language);
             textStars = (TextView) view.findViewById(R.id.text_stars);
         }
 
-        public void setGitHubRepo(GithubRepo gitHubRepo) {
+        public void setGithubRepo(GithubRepo gitHubRepo) {
             textRepoName.setText(gitHubRepo.name);
             textRepoDescription.setText(gitHubRepo.description);
             textLanguage.setText("Language: " + gitHubRepo.language);

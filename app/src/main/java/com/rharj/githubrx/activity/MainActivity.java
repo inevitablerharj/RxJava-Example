@@ -26,14 +26,13 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private GithubRepoAdapter adapter = new GithubRepoAdapter();
     private Subscription subscription;
+    ListView listView;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
 
-        final ListView listView = (ListView) findViewById(R.id.list_view_repos);
-        listView.setAdapter(adapter);
-
+        listView = (ListView) findViewById(R.id.list_view_repos);
         final EditText editTextUsername = (EditText) findViewById(R.id.edit_text_username);
         final Button buttonSearch = (Button) findViewById(R.id.button_search);
         buttonSearch.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override public void onNext(List<GithubRepo> gitHubRepos) {
                         Log.d(TAG, "In onNext()");
                         adapter.setGitHubRepos(gitHubRepos);
+                        listView.setAdapter(adapter);
                     }
                 });
     }
